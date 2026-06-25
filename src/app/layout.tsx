@@ -30,11 +30,13 @@ export default function RootLayout({
         <AntdRegistry>
           <ConfigProvider
             theme={{
+              cssVar: { prefix: "ant", key: "app" },
               algorithm: theme.defaultAlgorithm,
               token: {
                 colorPrimary: "#1677ff",
                 borderRadius: 8,
-                fontFamily: "var(--font-geist-sans), -apple-system, sans-serif",
+                fontFamily:
+                  "var(--font-geist-sans), -apple-system, sans-serif",
               },
             }}
           >

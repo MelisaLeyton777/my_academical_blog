@@ -1,16 +1,9 @@
 "use client";
 
 import { useState, useEffect, type ReactNode } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
-import {
-  Layout,
-  Menu,
-  Button,
-  theme,
-  Grid,
-  Typography,
-} from "antd";
+import { Layout, Menu, Button, theme, Grid, Typography } from "antd";
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
@@ -20,30 +13,17 @@ import {
   FolderOpenOutlined,
 } from "@ant-design/icons";
 import LanguageSwitcher from "./LanguageSwitcher";
+import en from "@/messages/en.json";
+import es from "@/messages/es.json";
 
 const { Header, Sider, Content } = Layout;
+const messages = { en, es } as const;
 
-const menuItems = (locale: string) => [
-  {
-    key: "/",
-    icon: <HomeOutlined />,
-    label: <Link href={`/${locale}`}>Home</Link>,
-  },
-  {
-    key: "/blog",
-    icon: <BookOutlined />,
-    label: <Link href={`/${locale}/blog`}>Blog</Link>,
-  },
-  {
-    key: "/about",
-    icon: <UserOutlined />,
-    label: <Link href={`/${locale}/about`}>About</Link>,
-  },
-  {
-    key: "/projects",
-    icon: <FolderOpenOutlined />,
-    label: <Link href={`/${locale}/projects`}>Projects</Link>,
-  },
+const menuItemDefs = [
+  { key: "/", icon: <HomeOutlined />, msgKey: "home" as const },
+  { key: "/blog", icon: <BookOutlined />, msgKey: "blog" as const },
+  { key: "/about", icon: <UserOutlined />, msgKey: "about" as const },
+  { key: "/projects", icon: <FolderOpenOutlined />, msgKey: "projects" as const },
 ];
 
 export default function PageLayout({
@@ -57,15 +37,23 @@ export default function PageLayout({
 }) {
   const [collapsed, setCollapsed] = useState(true);
   const pathname = usePathname();
+  const router = useRouter();
   const { token } = theme.useToken();
   const screens = Grid.useBreakpoint();
   const isMobile = !screens.md;
 
+  const t = messages[locale as keyof typeof messages] ?? messages.en;
   const path = pathname.replace(`/${locale}`, "") || "/";
 
+  const menuItems = menuItemDefs.map((item) => ({
+    ...item,
+    label: t.nav[item.msgKey],
+    onClick: () => router.push(`/${locale}${item.key}`),
+  }));
+
   const selectedKey =
-    menuItems(locale).find(
-      (item) => item.key !== "/" && path.startsWith(item.key)
+    menuItemDefs.find(
+      (item) => item.key !== "/" && path.startsWith(item.key),
     )?.key ?? "/";
 
   useEffect(() => {
@@ -82,7 +70,7 @@ export default function PageLayout({
         collapsed={collapsed}
         breakpoint="md"
         collapsedWidth={isMobile ? 0 : 80}
-        theme="dark"
+        className="sidebar"
         style={{
           overflow: "auto",
           height: "100vh",
@@ -109,14 +97,13 @@ export default function PageLayout({
               whiteSpace: "nowrap",
             }}
           >
-            {collapsed ? "AB" : "Academic Blog"}
+            {collapsed ? "AB" : t.home.title}
           </Link>
         </div>
         <Menu
-          theme="dark"
           mode="inline"
           selectedKeys={[selectedKey]}
-          items={menuItems(locale)}
+          items={menuItems}
         />
       </Sider>
       <Layout>

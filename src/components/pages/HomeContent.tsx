@@ -1,18 +1,16 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { Button, Typography, Flex, theme } from "antd";
-
-const { Title, Paragraph } = Typography;
+import { Button, theme } from "antd";
+import MarkdownContent from "./MarkdownContent";
+import SocialLinks from "@/components/social/SocialLinks";
 
 export default function HomeContent({
-  title,
-  subtitle,
+  content,
   cta,
   locale,
 }: {
-  title: string;
-  subtitle: string;
+  content: string;
   cta: string;
   locale: string;
 }) {
@@ -24,20 +22,21 @@ export default function HomeContent({
       style={{
         flex: 1,
         display: "flex",
+        flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
         padding: `0 ${token.paddingLG}px`,
         minHeight: "calc(100vh - 64px - 72px)",
+        textAlign: "center",
       }}
     >
-      <Flex vertical align="center" gap="large" style={{ textAlign: "center" }}>
-        <Title style={{ margin: 0 }}>{title}</Title>
-        <Paragraph
-          type="secondary"
-          style={{ fontSize: token.fontSizeLG, maxWidth: 480, margin: 0 }}
-        >
-          {subtitle}
-        </Paragraph>
+      <div style={{ maxWidth: 600 }}>
+        <MarkdownContent content={content} />
+        <div style={{ marginTop: token.marginLG }}>
+          <SocialLinks />
+        </div>
+      </div>
+      <div style={{ marginTop: token.marginXL }}>
         <Button
           type="primary"
           size="large"
@@ -45,7 +44,7 @@ export default function HomeContent({
         >
           {cta}
         </Button>
-      </Flex>
+      </div>
     </div>
   );
 }

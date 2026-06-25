@@ -1,5 +1,5 @@
 import type { Locale } from "@/i18n/routing";
-import { getDictionary } from "@/lib/messages";
+import { getMDXContent } from "@/lib/mdx";
 import AboutContent from "@/components/pages/AboutContent";
 
 export default async function AboutPage({
@@ -8,12 +8,7 @@ export default async function AboutPage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  const dict = await getDictionary(locale as Locale);
+  const content = getMDXContent(locale, "about") ?? "";
 
-  return (
-    <AboutContent
-      title={dict.about.title}
-      description={dict.about.description}
-    />
-  );
+  return <AboutContent content={content} />;
 }

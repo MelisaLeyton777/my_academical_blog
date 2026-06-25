@@ -1,16 +1,13 @@
 "use client";
 
-import { Typography, Card, theme } from "antd";
-import { UserOutlined } from "@ant-design/icons";
-
-const { Title, Paragraph } = Typography;
+import { Card, theme } from "antd";
+import MarkdownContent from "./MarkdownContent";
+import SocialLinks from "@/components/social/SocialLinks";
 
 export default function AboutContent({
-  title,
-  description,
+  content,
 }: {
-  title: string;
-  description: string;
+  content: string;
 }) {
   const { token } = theme.useToken();
 
@@ -19,7 +16,7 @@ export default function AboutContent({
       style={{
         flex: 1,
         padding: `${token.paddingXL}px ${token.paddingLG}px`,
-        maxWidth: 880,
+        maxWidth: 720,
         margin: "0 auto",
         width: "100%",
       }}
@@ -28,17 +25,11 @@ export default function AboutContent({
         styles={{ body: { padding: token.paddingLG } }}
       >
         <div style={{ textAlign: "center", marginBottom: token.marginLG }}>
-          <UserOutlined style={{ fontSize: 48, color: token.colorPrimary }} />
+          <MarkdownContent content={content} />
         </div>
-        <Title level={2} style={{ textAlign: "center" }}>
-          {title}
-        </Title>
-        <Paragraph
-          type="secondary"
-          style={{ fontSize: token.fontSizeLG, lineHeight: 1.8 }}
-        >
-          {description}
-        </Paragraph>
+        <div style={{ textAlign: "center" }}>
+          <SocialLinks />
+        </div>
       </Card>
     </div>
   );

@@ -1,40 +1,49 @@
 "use client";
 
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
-import { Layout, Menu, theme, Typography } from "antd";
+import { Layout, Menu, theme } from "antd";
 import LanguageSwitcher from "./LanguageSwitcher";
+import en from "@/messages/en.json";
+import es from "@/messages/es.json";
 
 const { Header: AntHeader } = Layout;
+const messages = { en, es } as const;
 
 export default function Header({ locale }: { locale: string }) {
   const pathname = usePathname();
+  const router = useRouter();
   const { token } = theme.useToken();
 
+  const t = messages[locale as keyof typeof messages] ?? messages.en;
   const path = pathname.replace(`/${locale}`, "") || "/";
 
   const items = [
     {
       key: "/",
-      label: <Link href={`/${locale}`}>Home</Link>,
+      label: t.nav.home,
+      onClick: () => router.push(`/${locale}`),
     },
     {
       key: "/blog",
-      label: <Link href={`/${locale}/blog`}>Blog</Link>,
+      label: t.nav.blog,
+      onClick: () => router.push(`/${locale}/blog`),
     },
     {
       key: "/about",
-      label: <Link href={`/${locale}/about`}>About</Link>,
+      label: t.nav.about,
+      onClick: () => router.push(`/${locale}/about`),
     },
     {
       key: "/projects",
-      label: <Link href={`/${locale}/projects`}>Projects</Link>,
+      label: t.nav.projects,
+      onClick: () => router.push(`/${locale}/projects`),
     },
   ];
 
-  const selectedKey = items.find(
-    (item) => item.key !== "/" && path.startsWith(item.key)
-  )?.key || "/";
+  const selectedKey =
+    items.find((item) => item.key !== "/" && path.startsWith(item.key))?.key ||
+    "/";
 
   return (
     <AntHeader
@@ -61,14 +70,20 @@ export default function Header({ locale }: { locale: string }) {
           marginRight: 24,
         }}
       >
-        Academic Blog
+        {t.home.title}
       </Link>
-      <div style={{ display: "flex", alignItems: "center", gap: token.paddingXS }}>
+      <div
+        style={{ display: "flex", alignItems: "center", gap: token.paddingXS }}
+      >
         <Menu
           mode="horizontal"
           selectedKeys={[selectedKey]}
           items={items}
-          style={{ border: "none", flex: 1, minWidth: 0, background: "transparent" }}
+          style={{
+            border: "none",
+            flex: 1,
+            minWidth: 0,
+          }}
         />
         <LanguageSwitcher locale={locale} />
       </div>
