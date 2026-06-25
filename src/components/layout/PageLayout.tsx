@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, type ReactNode } from "react";
+import { useState, type ReactNode } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 import { Layout, Menu, Button, theme, Grid, Typography } from "antd";
@@ -45,22 +45,21 @@ export default function PageLayout({
   const t = messages[locale as keyof typeof messages] ?? messages.en;
   const path = pathname.replace(`/${locale}`, "") || "/";
 
-  const menuItems = menuItemDefs.map((item) => ({
-    ...item,
-    label: t.nav[item.msgKey],
-    onClick: () => router.push(`/${locale}${item.key}`),
+  const navigate = (href: string) => {
+    router.push(href);
+    if (isMobile) setCollapsed(true);
+  };
+
+  const menuItems = menuItemDefs.map(({ msgKey, ...rest }) => ({
+    ...rest,
+    label: t.nav[msgKey],
+    onClick: () => navigate(`/${locale}${rest.key}`),
   }));
 
   const selectedKey =
     menuItemDefs.find(
       (item) => item.key !== "/" && path.startsWith(item.key),
     )?.key ?? "/";
-
-  useEffect(() => {
-    if (isMobile) {
-      setCollapsed(true);
-    }
-  }, [pathname]);
 
   return (
     <Layout style={{ minHeight: "100vh" }}>
