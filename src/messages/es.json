@@ -1,0 +1,32 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "blog": "Blog",
+    "about": "Sobre mí",
+    "projects": "Proyectos"
+  },
+  "home": {
+    "title": "Blog Académico",
+    "subtitle": "Explorando ideas en ciencia y tecnología",
+    "cta": "Leer el Blog"
+  },
+  "blog": {
+    "title": "Blog",
+    "description": "Últimos artículos y publicaciones",
+    "readMore": "Leer más →"
+  },
+  "about": {
+    "title": "Sobre Mí",
+    "description": "Escribe algo sobre ti aquí."
+  },
+  "projects": {
+    "title": "Proyectos",
+    "description": "Una colección de mi trabajo."
+  },
+  "footer": {
+    "copyright": "Todos los derechos reservados."
+  },
+  "language": {
+    "switch": "English"
+  }
+}

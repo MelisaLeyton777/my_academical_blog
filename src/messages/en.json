@@ -1,0 +1,32 @@
+{
+  "nav": {
+    "home": "Home",
+    "blog": "Blog",
+    "about": "About",
+    "projects": "Projects"
+  },
+  "home": {
+    "title": "Academic Blog",
+    "subtitle": "Exploring ideas in science and technology",
+    "cta": "Read the Blog"
+  },
+  "blog": {
+    "title": "Blog",
+    "description": "Latest posts and articles",
+    "readMore": "Read more →"
+  },
+  "about": {
+    "title": "About Me",
+    "description": "Write something about yourself here."
+  },
+  "projects": {
+    "title": "Projects",
+    "description": "A collection of my work."
+  },
+  "footer": {
+    "copyright": "All rights reserved."
+  },
+  "language": {
+    "switch": "Español"
+  }
+}
