@@ -11,19 +11,30 @@ import {
   BookOutlined,
   UserOutlined,
   FolderOpenOutlined,
+  FileTextOutlined,
+  ExperimentOutlined,
 } from "@ant-design/icons";
 import LanguageSwitcher from "./LanguageSwitcher";
+import ThemeToggle from "./ThemeToggle";
 import en from "@/messages/en.json";
 import es from "@/messages/es.json";
 
 const { Header, Sider, Content } = Layout;
 const messages = { en, es } as const;
 
-const menuItemDefs = [
-  { key: "/", icon: <HomeOutlined />, msgKey: "home" as const },
-  { key: "/blog", icon: <BookOutlined />, msgKey: "blog" as const },
-  { key: "/about", icon: <UserOutlined />, msgKey: "about" as const },
-  { key: "/projects", icon: <FolderOpenOutlined />, msgKey: "projects" as const },
+type MenuItemDef = {
+  key: string;
+  icon: React.ReactNode;
+  msgKey: "home" | "blog" | "projects" | "publications" | "cv";
+  isDownload?: boolean;
+};
+
+const menuItemDefs: MenuItemDef[] = [
+  { key: "/", icon: <HomeOutlined />, msgKey: "home" },
+  { key: "/blog", icon: <BookOutlined />, msgKey: "blog" },
+  { key: "/projects", icon: <FolderOpenOutlined />, msgKey: "projects" },
+  { key: "/publications", icon: <ExperimentOutlined />, msgKey: "publications" },
+  { key: "/cv", icon: <FileTextOutlined />, msgKey: "cv", isDownload: true },
 ];
 
 export default function PageLayout({
@@ -45,20 +56,25 @@ export default function PageLayout({
   const t = messages[locale as keyof typeof messages] ?? messages.en;
   const path = pathname.replace(`/${locale}`, "") || "/";
 
-  const navigate = (href: string) => {
-    router.push(href);
-    if (isMobile) setCollapsed(true);
-  };
-
-  const menuItems = menuItemDefs.map(({ msgKey, ...rest }) => ({
+  const menuItems = menuItemDefs.map(({ msgKey, isDownload, ...rest }) => ({
     ...rest,
     label: t.nav[msgKey],
-    onClick: () => navigate(`/${locale}${rest.key}`),
+    onClick: () => {
+      if (isDownload) {
+        const a = document.createElement("a");
+        a.href = "/cv.pdf";
+        a.download = "CV.pdf";
+        a.click();
+      } else {
+        router.push(`/${locale}${rest.key}`);
+      }
+      if (isMobile) setCollapsed(true);
+    },
   }));
 
   const selectedKey =
     menuItemDefs.find(
-      (item) => item.key !== "/" && path.startsWith(item.key),
+      (item) => !item.isDownload && item.key !== "/" && path.startsWith(item.key),
     )?.key ?? "/";
 
   return (
@@ -124,7 +140,10 @@ export default function PageLayout({
             onClick={() => setCollapsed(!collapsed)}
             style={{ fontSize: 16, width: 64, height: 64 }}
           />
-          <LanguageSwitcher locale={locale} />
+          <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
+            <ThemeToggle />
+            <LanguageSwitcher locale={locale} />
+          </div>
         </Header>
         <Content
           style={{

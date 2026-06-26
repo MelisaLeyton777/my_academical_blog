@@ -10,9 +10,15 @@ export default async function HomePage({
 }) {
   const { locale } = await params;
   const dict = await getDictionary(locale as Locale);
-  const content = getMDXContent(locale, "home") ?? "";
+  const homeContent = getMDXContent(locale, "home") ?? "";
+  const aboutContent = getMDXContent(locale, "about") ?? "";
 
   return (
-    <HomeContent content={content} cta={dict.home.cta} locale={locale} />
+    <HomeContent
+      homeContent={homeContent}
+      aboutContent={aboutContent}
+      cta={dict.home.cta}
+      locale={locale}
+    />
   );
 }

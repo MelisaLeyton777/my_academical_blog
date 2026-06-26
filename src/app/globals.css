@@ -1,67 +1,51 @@
 @import "tailwindcss";
 
 /* ═══════════════════════════════════════════════
-   🎨 TEMA DE ANT DESIGN
-   ═══════════════════════════════════════════════
-   Modifica los valores de abajo para personalizar
-   los colores de todos los componentes Ant Design
-   y las utilidades de Tailwind.
+   🎨 TEMA CLARO
    ═══════════════════════════════════════════════ */
 
 :root {
-  /* ── Paleta principal ─────────────────────── */
+  /* Paleta principal */
   --color-primary: #13c2c2;
-  --color-success: #52c41a;
-  --color-warning: #faad14;
-  --color-danger: #ff4d4f;
-  --color-info: #13c2c2;
 
-  /* ── Fondos ───────────────────────────────── */
+  /* Fondos */
   --color-surface: #ffffff;
   --color-layout: #f5f5f5;
   --color-elevated: #ffffff;
 
-  /* ── Sider / Sidebar ──────────────────────── */
+  /* Sider / Sidebar */
   --color-sider: #006064;
   --color-sider-menu-item: rgba(255, 255, 255, 0.75);
   --color-sider-menu-item-hover: #ffffff;
   --color-sider-menu-item-selected: rgba(19, 194, 194, 0.25);
 
-  /* ── Texto ────────────────────────────────── */
+  /* Texto */
   --color-text-base: #000000;
   --color-text-secondary: rgba(0, 0, 0, 0.45);
   --color-text-tertiary: rgba(0, 0, 0, 0.25);
 
-  /* ── Bordes ───────────────────────────────── */
+  /* Bordes */
   --color-border: #d9d9d9;
   --color-border-secondary: #f0f0f0;
-
-  /* ── Radio de esquinas ────────────────────── */
-  --radius: 8px;
-  --radius-lg: 12px;
-  --radius-sm: 4px;
-
-  /* ── Mapeo a Ant Design ───────────────────── */
-  --ant-color-primary: var(--color-primary);
-  --ant-color-success: var(--color-success);
-  --ant-color-warning: var(--color-warning);
-  --ant-color-error: var(--color-danger);
-  --ant-color-info: var(--color-info);
-  --ant-color-bg-container: var(--color-surface);
-  --ant-color-bg-layout: var(--color-layout);
-  --ant-color-bg-elevated: var(--color-elevated);
-  --ant-color-text: var(--color-text-base);
-  --ant-color-text-secondary: var(--color-text-secondary);
-  --ant-color-text-tertiary: var(--color-text-tertiary);
-  --ant-color-border: var(--color-border);
-  --ant-color-border-secondary: var(--color-border-secondary);
-  --ant-border-radius: var(--radius);
-  --ant-border-radius-lg: var(--radius-lg);
-  --ant-border-radius-sm: var(--radius-sm);
 }
 
 /* ═══════════════════════════════════════════════
-   🏷️  SIDEBAR (CYAN)
+   🎨 TEMA OSCURO
+   ═══════════════════════════════════════════════ */
+
+html[data-theme="dark"] {
+  --color-surface: #141414;
+  --color-layout: #000000;
+  --color-elevated: #1f1f1f;
+  --color-text-base: rgba(255, 255, 255, 0.85);
+  --color-text-secondary: rgba(255, 255, 255, 0.45);
+  --color-text-tertiary: rgba(255, 255, 255, 0.25);
+  --color-border: #424242;
+  --color-border-secondary: #303030;
+}
+
+/* ═══════════════════════════════════════════════
+   🏷️  SIDEBAR
    ═══════════════════════════════════════════════ */
 
 .sidebar {

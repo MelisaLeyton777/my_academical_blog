@@ -2,8 +2,9 @@
   "nav": {
     "home": "Home",
     "blog": "Blog",
-    "about": "About",
-    "projects": "Projects"
+    "projects": "Projects",
+    "publications": "Publications",
+    "cv": "CV"
   },
   "home": {
     "title": "Academic Blog",
@@ -15,13 +16,13 @@
     "description": "Latest posts and articles",
     "readMore": "Read more →"
   },
-  "about": {
-    "title": "About Me",
-    "description": "Write something about yourself here."
-  },
   "projects": {
     "title": "Projects",
     "description": "A collection of my work."
+  },
+  "publications": {
+    "title": "Publications",
+    "description": "My academic publications."
   },
   "footer": {
     "copyright": "Developed by nacca-sudo."

@@ -1,16 +1,18 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { Button, theme } from "antd";
+import { Card, Button, theme } from "antd";
 import MarkdownContent from "./MarkdownContent";
 import SocialLinks from "@/components/social/SocialLinks";
 
 export default function HomeContent({
-  content,
+  homeContent,
+  aboutContent,
   cta,
   locale,
 }: {
-  content: string;
+  homeContent: string;
+  aboutContent: string;
   cta: string;
   locale: string;
 }) {
@@ -24,18 +26,19 @@ export default function HomeContent({
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        justifyContent: "center",
-        padding: `0 ${token.paddingLG}px`,
-        minHeight: "calc(100vh - 64px - 72px)",
-        textAlign: "center",
+        padding: `${token.paddingXL}px ${token.paddingLG}px`,
+        maxWidth: 720,
+        margin: "0 auto",
+        width: "100%",
       }}
     >
-      <div style={{ maxWidth: 600 }}>
-        <MarkdownContent content={content} />
+      <div style={{ textAlign: "center", maxWidth: 600, width: "100%" }}>
+        <MarkdownContent content={homeContent} />
         <div style={{ marginTop: token.marginLG }}>
           <SocialLinks />
         </div>
       </div>
+
       <div style={{ marginTop: token.marginXL }}>
         <Button
           type="primary"
@@ -45,6 +48,18 @@ export default function HomeContent({
           {cta}
         </Button>
       </div>
+
+      {aboutContent && (
+        <Card
+          style={{ width: "100%", marginTop: token.marginXXL }}
+          styles={{ body: { padding: token.paddingLG } }}
+        >
+          <MarkdownContent content={aboutContent} />
+          <div style={{ textAlign: "center", marginTop: token.marginLG }}>
+            <SocialLinks />
+          </div>
+        </Card>
+      )}
     </div>
   );
 }

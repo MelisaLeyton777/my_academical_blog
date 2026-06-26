@@ -1,6 +1,6 @@
 "use client";
 
-import { usePathname, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Layout, Menu, theme } from "antd";
 import LanguageSwitcher from "./LanguageSwitcher";
@@ -11,12 +11,10 @@ const { Header: AntHeader } = Layout;
 const messages = { en, es } as const;
 
 export default function Header({ locale }: { locale: string }) {
-  const pathname = usePathname();
   const router = useRouter();
   const { token } = theme.useToken();
 
   const t = messages[locale as keyof typeof messages] ?? messages.en;
-  const path = pathname.replace(`/${locale}`, "") || "/";
 
   const items = [
     {
@@ -30,20 +28,18 @@ export default function Header({ locale }: { locale: string }) {
       onClick: () => router.push(`/${locale}/blog`),
     },
     {
-      key: "/about",
-      label: t.nav.about,
-      onClick: () => router.push(`/${locale}/about`),
-    },
-    {
       key: "/projects",
       label: t.nav.projects,
       onClick: () => router.push(`/${locale}/projects`),
     },
+    {
+      key: "/publications",
+      label: t.nav.publications,
+      onClick: () => router.push(`/${locale}/publications`),
+    },
   ];
 
-  const selectedKey =
-    items.find((item) => item.key !== "/" && path.startsWith(item.key))?.key ||
-    "/";
+  const selectedKey = "/";
 
   return (
     <AntHeader
