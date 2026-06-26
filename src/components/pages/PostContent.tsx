@@ -4,7 +4,7 @@ import { Typography, Tag, theme } from "antd";
 import { CalendarOutlined } from "@ant-design/icons";
 import ArticleContent from "@/components/blog/ArticleContent";
 
-const { Title, Text } = Typography;
+const { Title } = Typography;
 
 export default function PostContent({
   title,

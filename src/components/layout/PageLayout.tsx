@@ -9,7 +9,6 @@ import {
   MenuUnfoldOutlined,
   HomeOutlined,
   BookOutlined,
-  UserOutlined,
   FolderOpenOutlined,
   FileTextOutlined,
   ExperimentOutlined,
@@ -33,7 +32,11 @@ const menuItemDefs: MenuItemDef[] = [
   { key: "/", icon: <HomeOutlined />, msgKey: "home" },
   { key: "/blog", icon: <BookOutlined />, msgKey: "blog" },
   { key: "/projects", icon: <FolderOpenOutlined />, msgKey: "projects" },
-  { key: "/publications", icon: <ExperimentOutlined />, msgKey: "publications" },
+  {
+    key: "/publications",
+    icon: <ExperimentOutlined />,
+    msgKey: "publications",
+  },
   { key: "/cv", icon: <FileTextOutlined />, msgKey: "cv", isDownload: true },
 ];
 
@@ -74,7 +77,8 @@ export default function PageLayout({
 
   const selectedKey =
     menuItemDefs.find(
-      (item) => !item.isDownload && item.key !== "/" && path.startsWith(item.key),
+      (item) =>
+        !item.isDownload && item.key !== "/" && path.startsWith(item.key),
     )?.key ?? "/";
 
   return (
@@ -112,14 +116,10 @@ export default function PageLayout({
               whiteSpace: "nowrap",
             }}
           >
-            {collapsed ? "AB" : t.home.title}
+            {collapsed ? "N" : t.home.title}
           </Link>
         </div>
-        <Menu
-          mode="inline"
-          selectedKeys={[selectedKey]}
-          items={menuItems}
-        />
+        <Menu mode="inline" selectedKeys={[selectedKey]} items={menuItems} />
       </Sider>
       <Layout>
         <Header

@@ -22,6 +22,7 @@ export function getMDXContent(locale: string, page: string): string | null {
 }
 
 function stripFrontmatter(raw: string): string {
+  raw = raw.replace(/\r\n/g, "\n");
   const match = raw.match(/^---\n[\s\S]*?\n---\n([\s\S]*)$/);
   return match ? match[1].trim() : raw.trim();
 }

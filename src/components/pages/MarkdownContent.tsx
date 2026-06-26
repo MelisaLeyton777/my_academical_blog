@@ -1,6 +1,7 @@
 "use client";
 
 import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import { Typography, theme } from "antd";
 
 const { Title, Paragraph } = Typography;
@@ -14,6 +15,7 @@ export default function MarkdownContent({
 
   return (
     <ReactMarkdown
+      remarkPlugins={[remarkGfm]}
       components={{
         h1: ({ children }) => <Title style={{ margin: 0 }}>{children}</Title>,
         h2: ({ children }) => (

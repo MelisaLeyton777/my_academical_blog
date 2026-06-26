@@ -30,11 +30,7 @@ function getDefaultMode(): ThemeMode {
 }
 
 export default function ThemeProvider({ children }: { children: ReactNode }) {
-  const [mode, setMode] = useState<ThemeMode>("light");
-
-  useEffect(() => {
-    setMode(getDefaultMode());
-  }, []);
+  const [mode, setMode] = useState<ThemeMode>(getDefaultMode);
 
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", mode);

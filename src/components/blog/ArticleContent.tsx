@@ -1,6 +1,6 @@
 "use client";
 
-import { Typography, Divider, theme } from "antd";
+import { Typography, theme } from "antd";
 
 const { Title, Paragraph } = Typography;
 
@@ -20,12 +20,7 @@ export default function ArticleContent({ content }: { content: string }) {
           return <Title key={i} level={3}>{line.slice(4)}</Title>;
         }
         if (line.trim() === "") {
-          return (
-            <Divider
-              key={i}
-              style={{ margin: `${token.marginSM}px 0` }}
-            />
-          );
+          return <div key={i} style={{ height: token.marginSM }} />;
         }
         return (
           <Paragraph

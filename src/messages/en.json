@@ -1,18 +1,18 @@
 {
   "nav": {
     "home": "Home",
-    "blog": "Blog",
+    "blog": "News",
     "projects": "Projects",
     "publications": "Publications",
     "cv": "CV"
   },
   "home": {
-    "title": "Academic Blog",
+    "title": "Nicolás Araya Caro",
     "subtitle": "Exploring ideas in science and technology",
     "cta": "Read the Blog"
   },
   "blog": {
-    "title": "Blog",
+    "title": "News",
     "description": "Latest posts and articles",
     "readMore": "Read more →"
   },
@@ -23,6 +23,19 @@
   "publications": {
     "title": "Publications",
     "description": "My academic publications."
+  },
+  "contact": {
+    "title": "Get in Touch",
+    "description": "Have a question or want to collaborate? Send me a message.",
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "send": "Send Message",
+    "success": "Message sent successfully! I'll get back to you soon."
+  },
+  "latestPosts": {
+    "title": "Latest Posts",
+    "viewAll": "View all posts"
   },
   "footer": {
     "copyright": "Developed by nacca-sudo."
