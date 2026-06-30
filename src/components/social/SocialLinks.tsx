@@ -3,7 +3,11 @@
 import { Space, Tooltip } from "antd";
 import { GithubOutlined, MailOutlined } from "@ant-design/icons";
 
-export default function SocialLinks({ size = "default" }: { size?: "small" | "default" }) {
+export default function SocialLinks({
+  size = "default",
+}: {
+  size?: "small" | "default";
+}) {
   const isSmall = size === "small";
   const iconFontSize = isSmall ? 18 : 24;
   const linkWH = isSmall ? 36 : 44;
@@ -36,7 +40,7 @@ export default function SocialLinks({ size = "default" }: { size?: "small" | "de
     <Space size={isSmall ? "small" : "middle"}>
       <Tooltip title="GitHub">
         <a
-          href="https://github.com/nacca-sudo"
+          href="https://github.com/MelisaLeyton777"
           target="_blank"
           rel="noopener noreferrer"
           style={linkStyle}
@@ -46,13 +50,17 @@ export default function SocialLinks({ size = "default" }: { size?: "small" | "de
         </a>
       </Tooltip>
       <Tooltip title="Email">
-        <a href="mailto:narayc@uc.cl" style={linkStyle} className="social-link">
+        <a
+          href="mailto:mleytonb3@estudiante.uc.cl"
+          style={linkStyle}
+          className="social-link"
+        >
           <MailOutlined style={iconStyle} />
         </a>
       </Tooltip>
       <Tooltip title="ORCID">
         <a
-          href="https://orcid.org/0009-0007-4560-7286"
+          href="https://orcid.org/0009-0004-1753-6650"
           target="_blank"
           rel="noopener noreferrer"
           style={linkStyle}
@@ -65,7 +73,7 @@ export default function SocialLinks({ size = "default" }: { size?: "small" | "de
       </Tooltip>
       <Tooltip title="LinkedIn">
         <a
-          href="https://linkedin.com/in/nicolas-araya-caro"
+          href="https://www.linkedin.com/in/melisa-leyton-bravo-224280258/"
           target="_blank"
           rel="noopener noreferrer"
           style={linkStyle}
@@ -78,7 +86,7 @@ export default function SocialLinks({ size = "default" }: { size?: "small" | "de
       </Tooltip>
       <Tooltip title="Google Scholar">
         <a
-          href="https://scholar.google.com/citations?hl=es&user=2H_rhNUAAAAJ"
+          href=""
           target="_blank"
           rel="noopener noreferrer"
           style={linkStyle}
