@@ -135,7 +135,7 @@ export default function HomeContent({
         <div style={{ flexShrink: 0 }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/profile.jpg"
+            src="/profile.jpeg"
             alt="Profile"
             width={isMobile ? 200 : 280}
             height={isMobile ? 200 : 280}
